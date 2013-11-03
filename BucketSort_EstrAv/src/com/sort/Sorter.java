@@ -3,9 +3,11 @@ package com.sort;
 import java.util.LinkedList;
 
 public class Sorter {
+	
+	private final static int BUCKET_RANGE = 5;
 
 	public static void BucketSort(int[] vetor, int maiorValor) {
-		int numBaldes = maiorValor / 5;
+		int numBaldes = maiorValor / BUCKET_RANGE;
 
 		LinkedList<Integer>[] baldes = new LinkedList[numBaldes];
 
@@ -14,21 +16,19 @@ public class Sorter {
 			baldes[i] = new LinkedList<Integer>();
 		}
 
-		int iteradorBalde = numBaldes - 1;
-
 		int tamanhoDoArray = vetor.length;
 
 		// Coloca os valores no balde respectivo:
 		System.out.println("Colocando elementos nos baldes:");
 		for (int ind = 0; ind < tamanhoDoArray; ind++) {
+			int iteradorBalde = numBaldes - 1;
 			while (true) {
 				if (iteradorBalde < 0) {
 					break;
 				}
-				if (vetor[ind] >= (iteradorBalde * 5)) {
+				if (vetor[ind] >= (iteradorBalde * BUCKET_RANGE)) {
 					baldes[iteradorBalde].add(vetor[ind]);
-					System.out.println("Elemento vetor[ind]=" + vetor[ind]
-							+ " adicionado ao balde número: " + iteradorBalde);
+					System.out.printf("Elemento vetor[%d]= %d adicionado ao balde número: %d\n", ind, vetor[ind], iteradorBalde);
 					break;
 				}
 				iteradorBalde--;
@@ -36,7 +36,7 @@ public class Sorter {
 		}
 		System.out.println("Fim da inserção dos elementos nos baldes");
 
-		System.out.println("Listando os elementos do badle:");
+		System.out.println("Listando os elementos do balde:");
 		// Lista os baldes (Desnecessario para o algoritmo final)
 		for (int indice = 0; indice < numBaldes; indice++) {
 			if (baldes[indice].size() != 0) {
@@ -67,9 +67,11 @@ public class Sorter {
 			// Devolve os valores ao vetor de entrada:
 			for (int indiceAuxiliar = 0; indiceAuxiliar < arrayAuxiliar.length; indiceAuxiliar++, indice++) {
 				vetor[indice] = arrayAuxiliar[indiceAuxiliar];
+				System.out.print(vetor[indice] + " ");
 			}
-
 		}
+		
+		System.out.println();
 	}
 
 	public static void insertionSort(int elementos[]) {

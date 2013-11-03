@@ -26,10 +26,10 @@ public class BucketSort {
 
 		long start = System.currentTimeMillis();
 		Sorter.BucketSort(vetor, max);
-
+		
 		long elapsed = System.currentTimeMillis() - start;
 
-		System.out.println("End " + elapsed + " ms");
+		System.out.println("\nEnd " + elapsed + " ms");
 	}
 
 }
